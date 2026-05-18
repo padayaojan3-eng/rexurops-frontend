@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Service Request · Rexur Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <div class="header-logo">
+        <img src="images/logo.png" alt="Rexur Logo" style="height:54px;width:54px;object-fit:contain;border-radius:6px;">
+    </div>
+    <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="form-page">
+
+    <h1 class="form-page__title">Submit Service Request</h1>
+    <p class="form-page__sub">Fill out the form below and our team will get back to you within 24 hours</p>
+
+
+    <div class="form-card">
+        <div class="form-card__head">
+            <div class="form-card__head-title">Service Request Form</div>
+            <div class="form-card__head-sub">Please provide accurate information so we can serve you better</div>
+        </div>
+
+        <form class="form-body" id="serviceForm" novalidate>
+
+            <!-- Personal Information -->
+            <div class="form-section-title">Personal Information</div>
+
+            <div class="form-group">
+                <label class="form-label" for="full_name">Full Name <span class="req">*</span></label>
+                <input type="text" id="full_name" name="full_name" class="form-input"
+                       placeholder="Name" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address <span class="req">*</span></label>
+                    <input type="email" id="email" name="email" class="form-input"
+                           placeholder="juan@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="phone">Contact Number <span class="req">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="form-input"
+                           placeholder="+63 912 345 6789" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="address">Complete Address <span class="req">*</span></label>
+                <input type="text" id="address" name="address" class="form-input"
+                       placeholder="Street, Barangay, City, Province" required>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <!-- Service Details -->
+            <div class="form-section-title">Service Details</div>
+
+            <div class="form-group">
+                <label class="form-label" for="service_type">Type of Service <span class="req">*</span></label>
+                <select id="service_type" name="service_type" class="form-select" required>
+                    <option value="">Select the service you need</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="description">Project Description <span class="req">*</span></label>
+                <textarea id="description" name="description" class="form-textarea" rows="4"
+                          placeholder="Please provide detailed information about your project requirements, scope, and any specific needs..."
+                          required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="preferred_date">Preferred Consultation Date <span class="req">*</span></label>
+                <input type="date" id="preferred_date" name="preferred_date" class="form-input" required>
+                <div class="form-hint">Select your preferred date for initial consultation</div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-gold" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Submit Request
+                </button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='index.html'">
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Success Popup -->
+<div id="popupSuccess" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:999;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;padding:40px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <div style="width:64px;height:64px;background:#F5EFE6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <i class="fas fa-circle-check" style="font-size:30px;color:#C99746;"></i>
+        </div>
+        <div style="font-size:20px;font-weight:800;color:#1e293b;margin-bottom:10px;">Request Submitted!</div>
+        <div style="font-size:14px;color:#64748b;line-height:1.6;margin-bottom:28px;">
+            Your service request has been received. Our team will get back to you within <strong>24 hours</strong>.
+        </div>
+        <button onclick="closePopup('popupSuccess')" style="background:#C99746;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:14px;font-weight:700;cursor:pointer;width:100%;">
+            Done
+        </button>
+        <button onclick="window.location.href='index.html'" style="background:none;border:none;color:#94a3b8;font-size:13px;cursor:pointer;margin-top:12px;text-decoration:underline;">
+            Back to Home
+        </button>
+    </div>
+</div>
+
+<!-- Error Popup -->
+<div id="popupError" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:999;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;padding:40px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <div style="width:64px;height:64px;background:#fef2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <i class="fas fa-circle-exclamation" style="font-size:30px;color:#ef4444;"></i>
+        </div>
+        <div style="font-size:20px;font-weight:800;color:#1e293b;margin-bottom:10px;">Submission Failed</div>
+        <div id="popupErrorMsg" style="font-size:14px;color:#64748b;line-height:1.6;margin-bottom:28px;"></div>
+        <button onclick="closePopup('popupError')" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:14px;font-weight:700;cursor:pointer;width:100%;">
+            Try Again
+        </button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="site-footer__copy">&copy; 2026 Rexur Engineering. All rights reserved.</div>
+    <div class="site-footer__sub">Design &amp; Build Contractor / Consultant - Cebu, Philippines</div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+    // Set minimum date to today
+    document.getElementById('preferred_date').min = new Date().toISOString().split('T')[0];
+
+    // Load services from API
+    (async () => {
+        const services = await fetchServices();
+        const sel = document.getElementById('service_type');
+        services.forEach(function(s) {
+            const opt = document.createElement('option');
+            opt.value = s.value;
+            opt.textContent = s.label;
+            sel.appendChild(opt);
+        });
+    })();
+
+    const form = document.getElementById('serviceForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function openPopup(id) {
+        const el = document.getElementById(id);
+        el.style.display = 'flex';
+    }
+
+    function closePopup(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    // Close popup when clicking the backdrop
+    ['popupSuccess', 'popupError'].forEach(function(id) {
+        document.getElementById(id).addEventListener('click', function(e) {
+            if (e.target === this) closePopup(id);
+        });
+    });
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const payload = {
+            full_name: form.full_name.value.trim(),
+            email: form.email.value.trim(),
+            phone: form.phone.value.trim(),
+            address: form.address.value.trim(),
+            service_type: form.service_type.value,
+            description: form.description.value.trim(),
+            preferred_date: form.preferred_date.value,
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+        try {
+            const result = await submitServiceRequest(payload);
+            if (result.success) {
+                form.reset();
+                openPopup('popupSuccess');
+            } else {
+                document.getElementById('popupErrorMsg').textContent = result.error || 'Something went wrong. Please try again.';
+                openPopup('popupError');
+            }
+        } catch {
+            document.getElementById('popupErrorMsg').textContent = 'Unable to connect to the server. Please try again later.';
+            openPopup('popupError');
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Request';
+    });
+</script>
+
+</body>
+</html>
