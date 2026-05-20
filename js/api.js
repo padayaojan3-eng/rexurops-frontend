@@ -1,4 +1,4 @@
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = window.BACKEND_URL || 'http://127.0.0.1:8000';
 
 function fetchWithTimeout(url, options = {}, timeoutMs = 60000) {
     const controller = new AbortController();
